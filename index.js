@@ -19,9 +19,9 @@ app.use(cookieParser());
 
 app.use("/api/employees", require("./Routers/EmployeesRouter"));
 
-app.use("/api/products", require("./Routers/ProductsRouter"));
-
 app.use("/api/suppliers", require("./Routers/SuppliersRouter"));
+
+app.use("/api/products", require("./Routers/ProductsRouter"));
 
 app.use("/api/orders", require("./Routers/OrdersRouter"));
 

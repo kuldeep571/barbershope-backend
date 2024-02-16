@@ -1,26 +1,28 @@
 const mongoose = require("mongoose");
+const validator = require('validator');
 const SuppliersSchema = mongoose.Schema({
     
-    supplierName: {
+    name: {
         type: String,
         required: true,
     },
-    contactPerson: {
-        type: Number,
+    contact: {
+        type: String,
         required: true,
     },
-    telephoneNo: {
-        type: Number,
+    telephone: {
+        type: String,
         required: true,
     },
     email: {
         type: String,
         required: true,
+        unique: true,
+        validate: {
+            validator: validator.isEmail,
+            message: 'Invalid email format',
+        },
     },
-    assignedProduct: {
-        type: Number,
-        required: true,
-    }
     
 },{timestamps: true})
 
