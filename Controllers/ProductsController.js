@@ -3,26 +3,19 @@ const db = require('../Models/ProductsModel');
 const postdata = async (req, res) => {
     try {
         const {
-            productName,
+            name,
             unitePrice,
-            quantityInStock,
+            quantity,
             availableQuantity
         } = req.body;
 
-        if (!productName || !unitePrice || !availableQuantity) {
-            res.status(400).json({
-                success: false,
-                message: "All fields are required",
-            })
-        } else {
-            const productdata = await db.create({
-                productName,
-                unitePrice,
-                quantityInStock,
-                availableQuantity,
-            })
-            res.status(201).json(productdata);
-        }
+        const createproduct = await db.create({
+            name,
+            unitePrice,
+            quantity,
+            availableQuantity
+        })
+        res.status(201).json(createproduct);
     } catch (error) {
         res.status(500).json(error.message)
     }
@@ -48,11 +41,8 @@ const getsingle = async (req, res) => {
 
 const deletedata = async (req, res) => {
     try {
-        await db.deleteOne({ _id: req.params.id });
-        res.status(200).json({
-            success: true,
-            message: "Delete Product Success"
-        })
+        const deletedata = await db.deleteOne({ _id: req.params.id });
+        res.status(200).json(deletedata)
     } catch (error) {
         res.status(500).json(error.message)
     }
@@ -61,33 +51,27 @@ const deletedata = async (req, res) => {
 const updatedata = async (req, res) => {
     try {
         const {
-            productName,
+            name,
             unitePrice,
-            quantityInStock,
+            quantity,
             availableQuantity
         } = req.body;
-
-        if (!productName || !unitePrice || !quantityInStock || !availableQuantity) {
-            res.status(400).json({
-                success: false,
-                message: "All Filed Require"
-            })
-        }
-        const updatedata = await findOneAndUpdate(
+        const updateemployee = await db.findOneAndUpdate(
             { _id: req.params.id },
             {
                 $set: {
-                    productName,
+                    name,
                     unitePrice,
-                    quantityInStock,
+                    quantity,
                     availableQuantity
                 },
             },
-            { new: true },
-        )
-        res.status(200).json(updatedata)
+            { new: true }
+        );
+        res.status(200).json(updateemployee)
+
     } catch (error) {
-        res.status(500).json(error.message)
+        res.status(500).json(error.message);
     }
 }
 

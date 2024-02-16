@@ -20,7 +20,4 @@ router.delete('/:id', deleteone);
 
 router.put('/:id', update);
 
-
 module.exports = router;
-
-

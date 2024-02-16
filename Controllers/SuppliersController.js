@@ -3,7 +3,7 @@ const db = require("../Models/SuppliersModel");
 const postdata = async (req, res) => {
     try {
         const createsupplier = await db.create(req.body);
-        res.status(200).json(createsupplier);
+        res.status(201).json(createsupplier);
     } catch (error) {
         console.error(error);
         res.status(500).json(error.message);
@@ -16,10 +16,7 @@ const getsuppliers = async (req, res) => {
         res.status(200).json(findalldata);
     } catch (error) {
         console.error(error);
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        res.status(500).json(error.message);
     }
 };
 

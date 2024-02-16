@@ -4,19 +4,15 @@ const SuppliersSchema = mongoose.Schema({
     
     name: {
         type: String,
-        required: true,
     },
     contact: {
         type: String,
-        required: true,
     },
     telephone: {
         type: String,
-        required: true,
     },
     email: {
         type: String,
-        required: true,
         unique: true,
         validate: {
             validator: validator.isEmail,
