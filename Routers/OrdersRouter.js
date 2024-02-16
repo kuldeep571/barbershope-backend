@@ -7,8 +7,6 @@ const {
     updatedata
 } =require("../Controllers/OrdersController");
 
-// const { requireAuth } = require("../Middlewares/requireAuth");
-
 const router = express.Router();
 
 router.post('/', Addorder);
