@@ -1,152 +1,94 @@
 const db = require("../Models/ClientModel");
-// const bcrypt = require('bcrypt')
-
 const postdata = async (req, res) => {
     try {
         const {
-            fullname,
+            name,
             phone,
             email,
-            marketingCommunication,
-            paymentRequired,
-            // password,
             gender,
-            monthOfBirth,
+            birth,
             note
         } = req.body;
-        console.log(req.body, "data")
-        const existingSupplier = await db.findOne({ email });
-        if (existingSupplier) {
+
+        const existingClient = await db.findOne({ email });
+        if (existingClient) {
             return res.status(400).json({
                 success: false,
                 message: "Email already exists in the database"
             });
         }
         else {
-            // const hashedPassword = await bcrypt.hash(password, 10);
-            const newClient = await db.create({
-                fullname,
+            const createclient = await db.create({
+                name,
                 phone,
                 email,
-                marketingCommunication,
-                paymentRequired,
-                // password: hashedPassword,
                 gender,
-                monthOfBirth,
+                birth,
                 note
             });
-            res.status(201).json({
-                success: true,
-                ClientData: newClient,
-                message: "Client created successfully",
-            });
+            res.status(201).json(createclient);
         }
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        res.status(500).json(error.message);
     }
 };
 
 const getclient = async (req, res) => {
     try {
         const findalldata = await db.find();
-        res.status(200).json({
-            success: true,
-            findalldata,
-            message: "Get All Client Data",
-        });
+        res.status(200).json(findalldata);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        res.status(500).json(error.message);
     }
 };
 
 const getsingle = async (req, res) => {
     try {
         const findsingle = await db.findOne({ _id: req.params.id })
-        res.status(200).json({
-            success: true,
-            findsingle,
-            message: "Get Single Client Data"
-        })
+        res.status(200).json(findsingle)
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        res.status(500).json(error.message);
     }
 }
 
 const deleteone = async (req, res) => {
     try {
-        await db.deleteOne({ _id: req.params.id })
-        res.status(200).json({
-            success: true,
-            message: "Delete Client Success"
-        })
+        const deleteclient = await db.deleteOne({ _id: req.params.id })
+        res.status(200).json(deleteclient)
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        })
+        res.status(500).json(error.message)
     }
 }
 
 const update = async (req, res) => {
     try {
         const {
-            fullname,
+            name,
             phone,
             email,
-            marketingCommunication,
-            paymentRequired,
-            password,
             gender,
-            monthOfBirth,
+            birth,
             note
         } = req.body;
 
-        const updatesupplier = await db.findOneAndUpdate(
+        const updateclient = await db.findOneAndUpdate(
             { _id: req.params.id },
             {
                 $set: {
-                    fullname,
+                    name,
                     phone,
                     email,
-                    marketingCommunication,
-                    paymentRequired,
-                    password,
                     gender,
-                    monthOfBirth,
+                    birth,
                     note
                 },
             },
             { new: true }
         );
-
-        if (!updatesupplier) {
-            res.status(400).json({
-                success: false,
-                message: "Client not found for update"
-            })
-        }
-
-        res.status(200).json({
-            success: true,
-            updatesupplier,
-            message: "Client update successfully"
-        })
+        res.status(200).json(updateclient)
 
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        res.status(500).json(error.message);
     }
 }
 
@@ -157,4 +99,3 @@ module.exports = {
     deleteone,
     update
 }
-
