@@ -14,4 +14,4 @@ const ImportSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("importfile", ImportSchema);
+module.exports = mongoose.model("import", ImportSchema);
