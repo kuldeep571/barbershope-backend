@@ -4,7 +4,7 @@ const postdata = async (req, res) => {
     try {
         // const img = req.uploadedImageUrl;
         const createdData = await db.create(req.body);
-        res.status(200).json(createdData);
+        res.status(201).json(createdData);
     } catch (error) {
         console.error(error);
         res.status(500).json(error.message);
