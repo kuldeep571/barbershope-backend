@@ -11,6 +11,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 dbConnect();
+app.use(express.static(__dirname + "/public"))
 app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParser.json());
@@ -39,7 +40,7 @@ app.use("/api/pricinglevel", require("./Routers/PricingRouter"));
 
 app.use("/api/schedule", require("./Routers/ScheduleRouter"));
 
-app.use("/api/import", require("./Routers/ImportFilesRouter"));
+app.use("/api/imports", require("./Routers/ImportFilesRouter"));
 
 app.listen(PORT, () => {
   console.log(`Barbershop Server is running  at PORT ${PORT}`);

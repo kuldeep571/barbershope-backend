@@ -1,13 +1,8 @@
 const mongoose = require('mongoose');
 
 const ImportSchema = mongoose.Schema({
-    uploadFile: {
+    image: {
         type: String,
-        required:true,
-    },
-    fileDetails: {
-        type: String,
-        required:true,
     },
 });
 

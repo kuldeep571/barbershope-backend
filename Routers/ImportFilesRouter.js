@@ -1,8 +1,5 @@
 const express = require('express');
-const multer = require('multer');
-const storage = multer.memoryStorage();
-const upload = multer({storage: storage})
-const uploadedcloudinaryImages = require('../Middlewares/singleImgUpload')
+const upload = require("../Middlewares/uploadcsv")
 const
     {
         postdata,
@@ -14,7 +11,7 @@ const
 
 const router = express.Router();
 
-router.post('/', upload.single("uploadfile"), uploadedcloudinaryImages, postdata);
+router.post("/single", upload.single("image"), postdata);
 
 router.get('/', getimport);
 
@@ -24,7 +21,4 @@ router.delete('/:id', deletedata);
 
 router.put('/:id', updatedata);
 
-
 module.exports = router;
-
-

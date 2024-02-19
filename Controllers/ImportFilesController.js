@@ -1,23 +1,10 @@
 const db = require("../Models/ImportFilesModel");
 
-const postdata = async (req, res) => {
-    try {
-        const {
-            fileDetails
-        } = req.body
+const postdata = async (req, res, next) => {
+    console.log(req.file); 
+    res.send("uploaded successfully");
+  }
 
-        const img = req.uploadedImageUrl
-        const insertdata = await db.create(
-            {
-                fileDetails,
-                uploadFile: img,
-            }
-        );
-        res.status(200).json(insertdata);
-    } catch (error) {
-        res.status(500).json(error)
-    }
-};
 
 const getimport = async (req, res) => {
     try {
@@ -55,13 +42,13 @@ const updatedata = async (req, res) => {
             fileDetails
         } = req.body
 
-        const img = req.uploadedImageUrl
+        const csvfile = req.uploadedCsvUrl
         const update = await db.upadteMany(
             { _id: req.params.id },
             {
                 $set: {
                     fileDetails,
-                    uploadFile: img,
+                    uploadFile: csvfile,
                 }
             },
             {new: true}

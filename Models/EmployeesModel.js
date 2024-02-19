@@ -46,6 +46,27 @@ const EmployeesSchema = mongoose.Schema({
     joiningdate: {
         type: String,
     },
+    mon2workinghours: {
+        type: String,
+    },
+    tue2workinghours: {
+        type: String,
+    },
+    wed2workinghours: {
+        type: String,
+    },
+    thu2workinghours: {
+        type: String,
+    },
+    fri2workinghours: {
+        type: String,
+    },
+    sat2workinghours: {
+        type: String,
+    },
+    sun2workinghours: {
+        type: String,
+    },
 
 },{timestamps: true})
 
