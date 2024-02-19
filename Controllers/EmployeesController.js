@@ -17,10 +17,7 @@ const getemployees = async (req, res) => {
         res.status(200).json(findalldata);
     } catch (error) {
         console.error(error);
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error"
-        });
+        res.status(500).json(error.message);
     }
 };
 
