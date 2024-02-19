@@ -11,7 +11,7 @@ const
 
 const router = express.Router();
 
-router.post("/single", upload.single("image"), postdata);
+router.post("/", upload.single("image"), postdata);
 
 router.get('/', getimport);
 

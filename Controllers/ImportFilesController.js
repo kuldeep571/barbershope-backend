@@ -1,9 +1,32 @@
 const db = require("../Models/ImportFilesModel");
 
+// const postdata = async (req, res, next) => {
+//     console.log(req.file); 
+//     res.send("uploaded successfully");
+//   }
+
 const postdata = async (req, res, next) => {
-    console.log(req.file); 
-    res.send("uploaded successfully");
-  }
+    try {
+      const file = req.file;
+      if (!file) {
+        res.status(400).send("Please upload a file");
+        return;
+      }
+  
+      // Save file information to MongoDB
+      const newFile = new db({
+        filename: file.image,
+        path: file.path,
+        size: file.size,
+      });
+      await newFile.save();
+  
+      res.send("File uploaded and data stored successfully");
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Server Error");
+    }
+  };
 
 
 const getimport = async (req, res) => {
@@ -51,7 +74,7 @@ const updatedata = async (req, res) => {
                     uploadFile: csvfile,
                 }
             },
-            {new: true}
+            { new: true }
         );
         res.status(200).json(update);
     } catch (error) {

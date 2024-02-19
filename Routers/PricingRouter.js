@@ -22,5 +22,3 @@ router.put('/:id', update);
 
 
 module.exports = router;
-
-
