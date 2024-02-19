@@ -42,7 +42,7 @@ app.use("/api/schedule", require("./Routers/ScheduleRouter"));
 
 app.use("/api/imports", require("./Routers/ImportFilesRouter"));
 
-app.use("/api/venue", require("./Routers/VenueRouter"));
+app.use("/api/venues", require("./Routers/VenueRouter"));
 
 app.listen(PORT, () => {
   console.log(`Barbershop Server is running  at PORT ${PORT}`);

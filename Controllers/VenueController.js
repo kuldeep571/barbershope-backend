@@ -5,13 +5,13 @@ const postdata = async (req, res) => {
             phoneno,
             email,
             website,
-            openingHours,
+            openinghours,
         } = req.body;
         const createvenue = await db.create({
             phoneno,
             email,
             website,
-            openingHours,
+            openinghours,
         });
         res.status(201).json(createvenue);
     } catch (error) {
@@ -52,7 +52,7 @@ const update = async (req, res) => {
             phoneno,
             email,
             website,
-            openingHours,
+            openinghours,
         } = req.body;
 
         const updateService = await db.findOneAndUpdate(
@@ -62,7 +62,7 @@ const update = async (req, res) => {
                     phoneno,
                     email,
                     website,
-                    openingHours,
+                    openinghours,
                 },
             },
             { new: true }

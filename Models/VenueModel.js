@@ -10,7 +10,7 @@ const VenueSchema = mongoose.Schema({
     website: {
         type: String,
     },
-    openingHours: {
+    openinghours: {
         monday:{
             start:String,
             end:String,
