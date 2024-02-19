@@ -33,6 +33,14 @@ app.use("/api/user", require("./Routers/UserRouter"));
 
 app.use("/api/admin", require("./Routers/AdminRouter"));
 
+app.use("/api/services", require("./Routers/ServicesRouter"));
+
+app.use("/api/pricinglevel", require("./Routers/PricingRouter"));
+
+app.use("/api/schedule", require("./Routers/ScheduleRouter"));
+
+app.use("/api/import", require("./Routers/ImportFilesRouter"));
+
 app.listen(PORT, () => {
   console.log(`Barbershop Server is running  at PORT ${PORT}`);
 }); 

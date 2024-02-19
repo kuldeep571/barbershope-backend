@@ -50,6 +50,14 @@ const update = async (req, res) => {
             phone,
             images,
             services,
+            monworkinghours,
+            tueworkinghours,
+            wedworkinghours,
+            thuworkinghours,
+            friworkinghours,
+            satworkinghours,
+            sunworkinghours,
+            joiningdate,
         } = req.body;
         // const img = req.uploadedImageUrl
         const updateemployee = await db.findOneAndUpdate(
@@ -61,6 +69,14 @@ const update = async (req, res) => {
                     phone,
                     images,
                     services,
+                    monworkinghours,
+                    tueworkinghours,
+                    wedworkinghours,
+                    thuworkinghours,
+                    friworkinghours,
+                    satworkinghours,
+                    sunworkinghours,
+                    joiningdate,
                 },
             },
             { new: true }
