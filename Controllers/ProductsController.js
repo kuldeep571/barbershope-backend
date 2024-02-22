@@ -6,14 +6,16 @@ const postdata = async (req, res) => {
             name,
             unitePrice,
             quantity,
-            availableQuantity
+            availableQuantity,
+            sname
         } = req.body;
 
         const createproduct = await db.create({
             name,
             unitePrice,
             quantity,
-            availableQuantity
+            availableQuantity,
+            sname
         })
         res.status(201).json(createproduct);
     } catch (error) {
@@ -54,7 +56,8 @@ const updatedata = async (req, res) => {
             name,
             unitePrice,
             quantity,
-            availableQuantity
+            availableQuantity,
+            sname
         } = req.body;
         const updateemployee = await db.findOneAndUpdate(
             { _id: req.params.id },
@@ -63,7 +66,8 @@ const updatedata = async (req, res) => {
                     name,
                     unitePrice,
                     quantity,
-                    availableQuantity
+                    availableQuantity,
+                    sname
                 },
             },
             { new: true }

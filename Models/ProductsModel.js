@@ -14,6 +14,9 @@ const productSchema = mongoose.Schema({
     availableQuantity: {
         type: String,
     },
+    sname: {
+        type: String,
+    },
 
 }, { timestamps: true });
 

@@ -49,7 +49,7 @@ const deleteone = async (req, res) => {
 const update = async (req, res) => {
     try {
         const {
-            phoneno,
+            phoneno,                                                          
             email,
             website,
             openinghours,
